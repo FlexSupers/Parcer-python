@@ -1,6 +1,7 @@
-from cProfile import label
 from kivy.app import App
 from kivy.uix.label import Label
+from kivy.uix.button import Button
+from kivy.uix.gridlayout import GridLayout
 
 
 import requests
@@ -32,14 +33,25 @@ for market_cap in market_caps:
 
 print(n,'\n',p,'\n',m_c)
 
+class Container(GridLayout):
+    pass
+
 class MainApp(App):
     def build(self):
-        label = Label(text = 'Привет! Я программа с актуальными криптовалютами. Что ты хочешь найти?',
-        size_hint = (1, 1),
-        pos_hint = {'center_x': .5, 'center_y': .9}
-        )
+        #label = Label(text = 'Привет! Я программа с актуальными криптовалютами. Что ты хочешь найти?',
+        #size_hint = (None, None),
+        #pos_hint = {'center_x': .5, 'center_y': .9}
+        #)
+    
+        bl = GridLayout(cols = 2, padding = [30], spacing = 200)
+        button1 = Button(text = 'Поиск Криптовалюты', size_hint = (None, None))
+        button2 = Button(text = 'Актуальные криптовалюты', size_hint = (None, None))
+        bl.add_widget(button1)
+        bl.add_widget(button2)
 
-        return label
+        #return label
+        return bl
+        
 
 
 
