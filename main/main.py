@@ -3,19 +3,6 @@ import requests
 from bs4 import BeautifulSoup
 import dearpygui.dearpygui as dpg
 
-dpg.create_context()
-dpg.create_viewport(title ='Custom Title', width= 600, height= 300)
-
-with dpg.window(label= 'Python Parcer'):
-    dpg.add_text("Hi, this is KryptoParcer")
-    dpg.add_button(label="Search")
-    dpg.add_button(label= 'Exit')
-
-dpg.setup_dearpygui()
-dpg.show_viewport()
-dpg.start_dearpygui()
-dpg.destroy_context()
-
 url = "https://coinmarketcap.com/"
 response = requests.get(url)
 soup = BeautifulSoup(response.text, 'lxml')
@@ -40,6 +27,29 @@ for price in prices:
     
 for market_cap in market_caps:
     m_c.append(market_cap.text)
+
+
+
+lines = [str(n), str(p), str(m_c)]
+with open(r"data.txt", "w") as file:
+    for  line in lines:
+        file.write(line + '\n')
+file.close()
+
+
+
+dpg.create_context()
+vp = dpg.create_viewport(title='Parcer', width=600, height=200)
+
+with dpg.window(label = 'Python Parcer'):
+    dpg.add_text("Hi, this is KryptoParcer")
+    dpg.add_button(label = 'All Krypto')
+    dpg.add_button(label ="Search")
+    dpg.add_button(label = 'Exit')
+
+dpg.setup_dearpygui(viewport=vp)
+dpg.show_viewport()
+dpg.start_dearpygui()
 
 
 while True:
