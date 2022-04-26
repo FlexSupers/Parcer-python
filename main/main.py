@@ -42,10 +42,11 @@ with open(r"data.txt", "w") as file:
 file.close()
 
 
-def allkrypta():
-    print("Name:",n)
-    print("Price:",p)
-    print("Cap:",m_c)
+
+def allkrypta(sender, app_data):
+    print(n)
+    print(m_c)
+    print(p)
 
 def search():
     print("Введите название криптовалюты с условием регистра (например Bitcoin)")
@@ -53,14 +54,9 @@ def search():
     index=n.index(x)
     print(n[index],'Price:',p[index], 'Market_cap:',m_c[index])
 
-    
-   
 
 def ex():
     sys.exit()
-
-
-
 
 dpg.create_context()
 vp = dpg.create_viewport(title='Parcer', width=1400, height=600)
@@ -72,9 +68,6 @@ with dpg.window(label = 'Python Parcer', id = "main window"):
     #dpg.add_combo(n) # лист с выбором крипты
     #dpg.add_plot() # можно сделать график падения и поднять крипты)
     #dpg.add_listbox(n)
-    dpg.add_text(str(n))
-    dpg.add_text(str(m_c))
-    dpg.add_text(str(p))
 
 dpg.set_primary_window("main window", True)
 dpg.setup_dearpygui(viewport=vp)
