@@ -14,7 +14,8 @@
    <string>Parcer</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="unnamed.png"/>
+   <iconset theme="unnamed.png">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
@@ -47,6 +48,9 @@
     <property name="text">
      <string>Топ 10 крипты</string>
     </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
    </widget>
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
@@ -59,6 +63,16 @@
     </property>
     <property name="text">
      <string>Поиск по крипте</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>280</y>
+      <width>761</width>
+      <height>261</height>
+     </rect>
     </property>
    </widget>
   </widget>
