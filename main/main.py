@@ -1,16 +1,17 @@
-from cProfile import label
-from msilib.schema import Error
+from operator import index
 import requests
 from bs4 import BeautifulSoup
-import dearpygui.dearpygui as dpg
-import sys
+from prettytable import PrettyTable
 import csv
+
+FILENAME = "data.csv"
 
 n = []
 p = []
 m_c = []
 menu=""
 
+users = [n, p, m_c]
 
 def parsing():
     url = "https://coinmarketcap.com/"
@@ -30,39 +31,46 @@ def parsing():
         m_c.append(market_cap.text)
 
 
+def clear():
+    n.clear()
+    p.clear()
+    m_c.clear()
+
+
 
 
 def record():
-    lines = [str(n), str(p), str(m_c)]
-    with open(r"data.csv", "w") as file:
-        for  line in lines:
-            file.write(line + '\n')
-    file.close()
-
-
-
+    with open(FILENAME, "w", newline="") as csv_file:
+        writer = csv.writer(csv_file)
+        for line in users:
+            writer.writerow(line)
+        
 
 def search():
     parsing()
+    Table = PrettyTable()
+    Table.field_names = ["№","Name","Price","Marcet Cap"]
     print("Введите название криптовалюты с условием регистра (например Bitcoin)")
     x=input()
     try:
         index=n.index(x)
-        print(n[index],'Price:',p[index], 'Market_cap:',m_c[index])
+        #print(n[index],'Price:',p[index], 'Market_cap:',m_c[index])
+        Table.add_row([index+1,n[index], p[index], m_c[index]])
+        print(Table)
     except ValueError:
         print("Неправильно введенна криптовалюта")
         search()
 
 
 
-
 def vivod():
     parsing()
     record()
+    Table = PrettyTable()
+    Table.field_names = ["№","Name","Price","Marcet Cap"]
     for index in range(10):
-        print(n[index],'Price:',p[index], 'Market_cap:',m_c[index], '\n')
-        index=index+1
-
+        Table.add_row([index+1,n[index], p[index], m_c[index]])
+    print(Table)
 
 
 def menu():
@@ -81,9 +89,11 @@ def menu():
 
         elif menu == "3":
             break
+            
 
 if __name__ == "__main__":
     menu()
+    clear() # не очищает
 
        
 
