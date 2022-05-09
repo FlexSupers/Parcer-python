@@ -1,4 +1,3 @@
-from operator import index
 import requests
 from bs4 import BeautifulSoup
 from prettytable import PrettyTable
@@ -9,7 +8,6 @@ FILENAME = "data.csv"
 n = []
 p = []
 m_c = []
-menu=""
 
 users = [n, p, m_c]
 
@@ -32,11 +30,7 @@ def parsing():
 
 
 def clear():
-    n.clear()
-    p.clear()
-    m_c.clear()
-
-
+    print("\033[H\033[J")
 
 
 def record():
@@ -47,7 +41,6 @@ def record():
         
 
 def search():
-    parsing()
     Table = PrettyTable()
     Table.field_names = ["№","Name","Price","Marcet Cap"]
     print("Введите название криптовалюты с условием регистра (например Bitcoin)")
@@ -64,8 +57,6 @@ def search():
 
 
 def vivod():
-    parsing()
-    record()
     Table = PrettyTable()
     Table.field_names = ["№","Name","Price","Marcet Cap"]
     for index in range(10):
@@ -75,10 +66,12 @@ def vivod():
 
 def menu():
     while True:
+        parsing()
+        record()
         print('\n' 
         '1. Увидеть полный список криптовалют''\n'
         '2. Найти информацию об определенной криптовалюте' '\n' 
-        '3. Закончить программу')
+        '3. Выход')
 
         menu=input()
         if menu == "1":
@@ -93,7 +86,7 @@ def menu():
 
 if __name__ == "__main__":
     menu()
-    clear() # не очищает
+    clear()
 
        
 
