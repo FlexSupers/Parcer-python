@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from prettytable import PrettyTable
 import csv
+from colorama import init, Fore, Back, Style
 
 FILENAME = "data.csv"
 
@@ -34,25 +35,32 @@ def clear():
 
 
 def record():
-    with open(FILENAME, "w", newline="") as csv_file:
-        writer = csv.writer(csv_file)
-        for line in users:
-            writer.writerow(line)
+    try:
+        with open(FILENAME, "w", newline="") as csv_file:
+            writer = csv.writer(csv_file)
+            for line in users:
+                writer.writerow(line)
+    except PermissionError:
+        print("У вас уже открыт файл с таблицей для записи. Закройте его и попробуйте снова")
         
 
 def search():
-    Table = PrettyTable()
-    Table.field_names = ["№","Name","Price","Marcet Cap"]
+    parsing()
     print("Введите название криптовалюты с условием регистра (например Bitcoin)")
+    print("Чтобы выйти в главное меню, введите 4")
     x=input()
-    try:
-        index=n.index(x)
-        #print(n[index],'Price:',p[index], 'Market_cap:',m_c[index])
-        Table.add_row([index+1,n[index], p[index], m_c[index]])
-        print(Table)
-    except ValueError:
-        print("Неправильно введенна криптовалюта")
-        search()
+    if x=="4":
+        menu()
+    else:
+        try:
+            
+            for name in n:
+                if x.lower() in name.lower():
+                    i=n.index(name)
+            print(n[i],'Price:',p[i], 'Market_cap:',m_c[i])
+        except (ValueError, UnboundLocalError) as exp:
+            print("Неправильно введенна криптовалюта", '\n')
+            search()
 
 
 
@@ -65,6 +73,15 @@ def vivod():
 
 
 def menu():
+    print(Style.BRIGHT + Fore.GREEN)
+    print(  "******             **              *******             ********      *********     *******    ")
+    print(  "**    **          ****             **    **         ********         *********     **    **   ")
+    print(  "**    **         **  **            **     **       *****             ***           **     **  ")
+    print(  "**    **        **    **           **    **       ****               *********     **    **   ")
+    print(  "******         **      **          ******         ****               *********     ******     ")
+    print(  "**            ************         ** **           *****             ***           ** **      ")
+    print(  "**           **          **        **   **          *******          *********     **   **    ")
+    print(  "**          **            **       **     **          *********      *********     **     **  ")
     while True:
         parsing()
         record()
