@@ -23,8 +23,9 @@
 ---
 
 <h3 align="center">Скриншоты</h3>
-<p align="center"><img src="Screenshots/KBlAsjazmIs.jpg"></p>
-<p align="center"><img src="Screenshots/7WFc6RICzEI.jpg"></p>
+<p align="center"><img src="Screenshots/menu.jpg"></p>
+<p align="center"><img src="Screenshots/vivod.jpg"></p>
+<p align="center"><img src="Screenshots/search.jpg"></p>
 
 ![example workflow](https://github.com/FlexSupers/Parcer-python/actions/workflows/blank.yml/badge.svg?event=push)
 
