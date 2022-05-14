@@ -34,3 +34,5 @@
 [![Twitter Badge](https://img.shields.io/badge/Vladimir-Profile-informational?style=flat&logoColor=white&color=1CA2F1)](https://vk.com/flx_bmx)
 
 [![Twitter Badge](https://img.shields.io/badge/Artem-Profile-informational?style=flat&logoColor=white&color=1CA2F1)](https://vk.com/artemsaronchis)
+
+[![Twitter Badge](https://img.shields.io/badge/Nikita-Profile-informational?style=flat&logoColor=white&color=1CA2F1)](https://vk.com/nastroff)
