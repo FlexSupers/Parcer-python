@@ -35,44 +35,28 @@ def clear():
 
 
 def record():
-    try:
-        with open(FILENAME, "w", newline="") as csv_file:
-            writer = csv.writer(csv_file)
-            for line in users:
-                writer.writerow(line)
-    except PermissionError:
-        print("У вас уже открыт файл с таблицей для записи. Закройте его и попробуйте снова")
+    with open(FILENAME, "w", newline="") as csv_file:
+        writer = csv.writer(csv_file)
+        for line in users:
+            writer.writerow(line)
         
 
 def search():
-    parsing()
-    print("Введите название криптовалюты с условием регистра (например Bitcoin)")
+    Table = PrettyTable()
+    Table.field_names = ["№","Name","Price","Market Cap"]
+    print("Введите название криптовалюты:")
     print("Чтобы выйти в главное меню, введите 4")
     x=input()
     if x=="4":
         menu()
     else:
-        try:
-            
-            for name in n:
-                if x.lower() in name.lower():
-                    i=n.index(name)
-            print(n[i],'Price:',p[i], 'Market_cap:',m_c[i])
-        except (ValueError, UnboundLocalError) as exp:
-            print("Неправильно введенна криптовалюта", '\n')
-            search()
+        for name in n:
+            if name.lower().find(x.lower())==0:
+                i=n.index(name)
+                Table.add_row([i+1,n[i], p[i], m_c[i]])
+        print(Table)
 
-
-
-def vivod():
-    Table = PrettyTable()
-    Table.field_names = ["№","Name","Price","Marcet Cap"]
-    for index in range(10):
-        Table.add_row([index+1,n[index], p[index], m_c[index]])
-    print(Table)
-
-
-def menu():
+def krasota():
     print(Style.BRIGHT + Fore.GREEN)
     print(  "******             **              *******             ********      *********     *******    ")
     print(  "**    **          ****             **    **         ********         *********     **    **   ")
@@ -82,8 +66,20 @@ def menu():
     print(  "**            ************         ** **           *****             ***           ** **      ")
     print(  "**           **          **        **   **          *******          *********     **   **    ")
     print(  "**          **            **       **     **          *********      *********     **     **  ")
+    print('\n          Выполнено Гороховым Владимиром, Сарончиным Артемом и Букреевым Никитой'              )
+  
+
+def vivod():
+    Table = PrettyTable()
+    Table.field_names = ["№","Name","Price","Market Cap"]
+    for index in range(10):
+        Table.add_row([index+1,n[index], p[index], m_c[index]])
+    print(Table)
+
+
+
+def menu():
     while True:
-        parsing()
         record()
         print('\n' 
         '1. Увидеть полный список криптовалют''\n'
@@ -102,10 +98,7 @@ def menu():
             
 
 if __name__ == "__main__":
+    parsing()
+    krasota()
     menu()
     clear()
-
-       
-
-
-    
